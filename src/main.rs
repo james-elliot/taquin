@@ -68,7 +68,6 @@ fn build(v:Vec<usize>,n:usize,m:&mut MyPos,t:&mut Vec<u32>) {
     for (k,e) in v.iter().enumerate() {
         let mut v2 = v.clone();
         let r = v2.remove(k);
-        assert!(*e==r);
         let i=n/DIM;
         let j=n%DIM;
         m.mat[i][j]= *e as u8;
