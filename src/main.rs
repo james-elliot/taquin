@@ -1,4 +1,5 @@
-use pathfinding::prelude::{astar,idastar};
+use pathfinding::prelude::astar;
+use cpu_time::ProcessTime;
 
 const DIM:usize=3;
 #[derive(Clone, Debug, Eq, Hash, Ord, PartialEq, PartialOrd)]
@@ -73,14 +74,17 @@ fn build(v:Vec<usize>,n:usize,m:&mut MyPos,t:&mut Vec<u32>) {
         m.mat[i][j]= *e as u8;
         if n==(DIM*DIM-1) {
             m.normalize();
-            println!("{:?}",m);
+            let spt= ProcessTime::now();
             if let Some((_path,len)) = astar(
                 m,
                 |p| p.mysuccessors(),
                 |p| p.mydistance(),
 	        |p| p.mydistance()==0) {
-                println!("{:?} {}",m,len);
+                println!("{:?} {:?} {}",m,spt.elapsed(),len);
                 t[len as usize]+=1;
+            }
+            else {
+                println!("{:?} {:?}",m,spt.elapsed());
             }
         }
         else {
