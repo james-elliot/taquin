@@ -100,7 +100,7 @@ fn main() {
         i:0,
         j:0
     };
-    let v = [0,1,2,3,4,5,6,7,8,9];
+    let v = [0,1,2,3,4,5,6,7,8];
     build(v.to_vec(),0,&mut zero,&mut tlen);
     println!("{:?}",tlen);
 }
